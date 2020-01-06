@@ -114,7 +114,7 @@ public class VlcVideoLibrary implements MediaPlayer.EventListener {
     }
 
     public boolean isPlaying() {
-        if (player != null && player.isReleased()) {
+        if (player != null && !player.isReleased()) {
             return player.isPlaying();
         }
         return false;
@@ -129,7 +129,7 @@ public class VlcVideoLibrary implements MediaPlayer.EventListener {
     }
 
     public void stop() {
-        if (player != null && player.isPlaying()) {
+        if (player != null && !player.isPlaying()) {
             player.stop();
             player.release();
         }
@@ -178,6 +178,7 @@ public class VlcVideoLibrary implements MediaPlayer.EventListener {
             vlcOut.setWindowSize(width, height);
         vlcOut.attachViews();
         player.setVideoTrackEnabled(true);
+        player.setVolume(0);
         player.play();
     }
 

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements VlcListener, View
   private VlcVideoLibrary vlcVideoLibrary;
   private Button bStartStop;
   private EditText etEndpoint;
+  private String rtsp = "rtsp://admin:GtopiaLab123@gtopia.ddns.net:554/Streaming/Channels/101/";
 
   private String[] options = new String[]{":fullscreen"};
 
@@ -57,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements VlcListener, View
   @Override
   public void onClick(View view) {
     if (!vlcVideoLibrary.isPlaying()) {
-      vlcVideoLibrary.play(etEndpoint.getText().toString());
+      vlcVideoLibrary.play(rtsp);
       bStartStop.setText(getString(R.string.stop_player));
     } else {
       vlcVideoLibrary.stop();
-      bStartStop.setText(getString(R.string.start_player));
+      bStartStop.setText(rtsp);
     }
   }
 }
