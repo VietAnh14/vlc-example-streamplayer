@@ -41,12 +41,12 @@ public class VlcVideoLibrary implements MediaPlayer.EventListener {
         options.add(":fullscreen");
     }
 
-    // Set width and height of the surface view
+    // Set width and height of the surface view in pixel
     public VlcVideoLibrary(Context context, VlcListener vlcListener, SurfaceView surfaceView, int height, int width) {
         this.vlcListener = vlcListener;
         this.surfaceView = surfaceView;
-        this.height = (int) Math.floor(context.getResources().getDisplayMetrics().density * height);
-        this.width = (int) Math.floor(context.getResources().getDisplayMetrics().density * width);
+        this.height = height;
+        this.width = width;
         vlcInstance = new LibVLC(context, new VlcOptions().getDefaultOptions());
         options.add(":fullscreen");
     }
@@ -178,7 +178,6 @@ public class VlcVideoLibrary implements MediaPlayer.EventListener {
             vlcOut.setWindowSize(width, height);
         vlcOut.attachViews();
         player.setVideoTrackEnabled(true);
-        player.setVolume(0);
         player.play();
     }
 
